@@ -18,14 +18,12 @@ class MyHandler(BaseHTTPServer.BaseHTTPRequestHandler):
         self.send_header("Content-type", "text/html")
         self.end_headers()
     def do_GET(self):
-        if self.path=="/":
-            self.path="/newindex.html"
-
+        #Respond to a GET request.
         try:
             if self.path.endswith((".html",".htm")):
                 f = open(curdir + sep + self.path) #self.path has /index.html
                 self.send_response(200)
-                self.send_header("Content-type", 'text/html')
+                self.send_header("Content-type", "text/html")
                 self.end_headers()
                 # Start sending content
                 self.wfile.write(f.read())
@@ -41,27 +39,12 @@ class MyHandler(BaseHTTPServer.BaseHTTPRequestHandler):
                 return
                 
             if self.path.endswith(".gif"):
-                mimetype='image/gif'
-                f = open(curdir + sep + self.path, 'rb')
-                self.send_response(200)
-                self.send_header("Content-type", mimetype)
-                self.end_headers()
-                self.wfile.write(f.read())
-                f.close()
-
+                # IMPLEMENT THIS
                 return
                 
             if self.path.endswith(".jpg"):
-                mimetype='image/jpg'
-                f = open(curdir + sep + self.path, 'rb')
-                self.send_response(200)
-                self.send_header("Content-type", mimetype)
-                self.end_headers()
-                self.wfile.write(f.read())
-                f.close()
-
+                # IMPLEMENT THIS
                 return
-
         except IOError:
             self.send_error(404,'File not found: %self' % self.path)
             
